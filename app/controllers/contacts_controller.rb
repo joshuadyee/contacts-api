@@ -8,4 +8,19 @@ class ContactsController < ApplicationController
       phone_number: jy.phone_number
     }
   end
+
+  def all_contacts
+    formatted_contacts = []
+    contacts = Contact.all
+    contacts.each do |contact|
+      formatted_contacts << {
+        id: contact.id,
+        first_name: contact.first_name,
+        last_name: contact.last_name,
+        email: contact.email,
+        phone_number: contact.phone_number
+      }
+    end
+    render json: formatted_contacts
+  end
 end
